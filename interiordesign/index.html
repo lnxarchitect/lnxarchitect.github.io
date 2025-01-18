@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../cssstyle.css">
+</head>
+<body background-color: lightblue;>
+	<script>
+        function gotosite(x){
+            window.location=x;
+        }
+        function resizeimg() {
+            var dispImg = $("#displayimg");
+            dispImg.height('auto');
+            if (dispImg.height() > 450) {
+                dispImg.height(450);
+            }
+        }
+        function switchimg(x, desc, desc2, desc3){
+            $("#displayimg").attr( "src", function() {
+                return x;
+            });
+
+            $("#imgdesc").text(desc);
+            if(desc2 === undefined){
+                desc2 = "";
+            } 
+            if(desc3 === undefined){
+                desc3 = "";
+            }
+            $("#imgdesc2").text(desc2);
+            $("#imgdesc3").text(desc3);
+            //desc = 'bob<br>is\cool'+'<pre>Hello\nWorld</pre>';//desc.replace("\n", "<br>");
+        }
+	</script>
+    <script>
+        var highlightWord = undefined;
+        function highlightWordRetry(dur = 50, attempt = 0) {
+            if (attempt == 10) {
+                return;
+            }
+            setTimeout(() => {
+                if (highlightWord) {
+                    highlightWord('interiorDesign')
+                } else {
+                    highlightWordRetry();
+                }
+            }, dur + 25, attempt + 1);
+        }
+        function loadHeaderFooter() {
+            $("#headerid").load("../subHeader.html");
+            $("#footerid").load("../subFooter.html");
+            highlightWordRetry();
+        }
+        setTimeout(loadHeaderFooter, 10);
+    </script>
+    <div id="wrapper">
+        <div id="headerid">
+        </div>
+        <div style="font-family: sans-serif; position:relative; float:left; left:10px; top:40px; width: 270px; height: 80px;">
+            Misc
+            <br>
+            <img class="sidebutton" onmouseup="switchimg('intimage/04.jpg', 'Living Room')" src="intimage/04.jpg" alt="">
+            <img class="sidebutton" onmouseup="switchimg('intimage/02.jpg', 'Stairway')" src="intimage/02.jpg" alt="">
+            <img class="sidebutton" onmouseup="switchimg('intimage/05.jpg', 'Living room')" src="intimage/05.jpg" alt="">
+            <img class="sidebutton" onmouseup="switchimg('intimage/06.jpg', 'Living room')" src="intimage/06.jpg" alt="">
+            <img class="sidebutton" onmouseup="switchimg('intimage/03.jpg', 'Bathroom')" src="intimage/03.jpg" alt="">
+            <img class="sidebutton" onmouseup="switchimg('intimage/01.jpg', 'Ballroom')" src="intimage/01.jpg" alt="Ballroom">
+		</div>
+		<div id="imagediv">
+			<img id="displayimg" onload="resizeimg()" src="intimage/04.jpg" alt="" style="height:450px">
+            <div id="imgdesc" style="position:relative; width: 680px; top:-0px; left: 2px">Living Room</div>
+            <div id="imgdesc2" style="position:relative; width: 680px; top:-0px; left: 2px"></div>
+            <div id="imgdesc3" style="position:relative; width: 680px; top:-0px; left: 2px"></div>
+		</div>
+
+    </div>
+
+    <div id="footerid">
+    </div>
+
+</body>
+</html>
