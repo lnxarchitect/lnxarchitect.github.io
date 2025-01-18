@@ -1,0 +1,3 @@
+host: www.lnx.dx.am
+user: 1982580
+pw: Me Taxi Ester Number
