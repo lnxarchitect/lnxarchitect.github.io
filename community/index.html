@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="files.js"></script>
+<script src="../jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../cssstyle.css">
+</head>
+<body>
+    <script type="text/javascript" src="../js/jssor.slider.modern.js"></script>
+    <script>
+        var baseText = `<div id="jssor_1" style="position:relative; margin:0 auto;top:0px;left:0px;width:1600px;height:1000px;overflow:hidden;visibility:hidden;background-color:#17171a;">
+            <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="//jssorcdn7.azureedge.net/theme/svg/loading/static-svg/spin.svg" />
+            </div>
+            <div data-u="slides" id="bodyid" style="cursor:default;position:relative;top:0px;left:140px;width:1460px;height:1000px;overflow:hidden;">
+            </div>
+            <!-- Thumbnail Navigator -->
+            <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;top:0px;width:140px;height:1000px;background-color:#000000;" data-autocenter="2" data-scale-left="0.75">
+                <div data-u="slides">
+                    <div data-u="prototype" class="p" style="width:120px;height:88px;">
+                        <div data-u="thumbnailtemplate" class="t"></div>
+                        <svg viewbox="0 0 16000 16000" class="cv">
+                            <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+                            <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+                            <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Arrow Navigator -->
+            <div data-u="arrowleft" class="jssora073" style="width:150px;height:1000px;top:0px;left:135px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <path class="a" d="M4037.7,8357.3l5891.8,5891.8c100.6,100.6,219.7,150.9,357.3,150.9s256.7-50.3,357.3-150.9 l1318.1-1318.1c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3L7745.9,8000l4216.4-4216.4 c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3l-1318.1-1318.1c-100.6-100.6-219.7-150.9-357.3-150.9 s-256.7,50.3-357.3,150.9L4037.7,7642.7c-100.6,100.6-150.9,219.7-150.9,357.3C3886.8,8137.6,3937.1,8256.7,4037.7,8357.3 L4037.7,8357.3z"></path>
+                </svg>
+            </div>
+            <div data-u="arrowright" class="jssora073" style="width:150px;height:1000px;top:0px;right:15px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <path class="a" d="M11962.3,8357.3l-5891.8,5891.8c-100.6,100.6-219.7,150.9-357.3,150.9s-256.7-50.3-357.3-150.9 L4037.7,12931c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3L8254.1,8000L4037.7,3783.6 c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3l1318.1-1318.1c100.6-100.6,219.7-150.9,357.3-150.9 s256.7,50.3,357.3,150.9l5891.8,5891.8c100.6,100.6,150.9,219.7,150.9,357.3C12113.2,8137.6,12062.9,8256.7,11962.3,8357.3 L11962.3,8357.3z"></path>
+                </svg>
+            </div>
+        </div>`;
+        var baseStyle = `position:relative; margin:0 auto; top:0px; left:0px; width:1600px; height:1000px; overflow:hidden; visibility:hidden; background-color: #000`;
+        var currProjIndex = 0;
+        function changeProject(idx) {
+            // let index = parseInt(idx);
+            // console.log(index);
+            // currProjIndex = index;
+            for (let projIndex = 0; projIndex < projects.length; projIndex++) {
+                let prods = document.getElementById('proj'+projIndex);
+                if (idx === projIndex.toString()) {
+                    prods.style["box-shadow"] = "0 0 0 5px #FD0505";
+                    prods.style.width = "100px";
+                    prods.style.height = "100px";
+                } else {
+                    prods.style["box-shadow"] = "0 0 0 0px #FD0505";
+                    prods.style.width = "75px";
+                    prods.style.height = "75px";
+                }
+            }
+            currProjIndex = idx;
+            loadBody();
+        }
+        function loadProjects() {
+            let projDiv = document.getElementById('projectnav');
+            if (!projDiv) {
+                setTimeout(loadProjects, 1);
+                return;
+            }
+            let projText = '';
+            for (let projIndex = 0; projIndex < projects.length; projIndex++) {
+                let currProj = projects[projIndex];
+                projText += `<div class="tooltip">`
+                projText += `<div class="sidebuttoncontainerempty">`;
+                if (projIndex === currProjIndex) {
+                    projText += `<div id="proj`+projIndex+`" class="sidebuttoncontainer" style="width: 100px; height: 100px; border-radius: 5px; box-shadow: 0 0 0 5px #FD0505"; onmouseup="changeProject('`+projIndex+`')">`;
+                } else {
+                    projText += `<div id="proj`+projIndex+`" class="sidebuttoncontainer" style="border-radius: 5px; box-shadow: 0 0 0 0px #FD0505;" onmouseup="changeProject('`+projIndex+`')">`;
+                }
+                let shownIndex = currProj.shownImage || 0;
+                projText += `<img class="sidebutton" src="`+currProj[shownIndex].url+`">`;
+                projText += `</div>`
+                projText += `<span class="tooltiptext">`+currProj.title+`</span>`
+                projText += `</div>`;
+                projText += `</div> &nbsp`
+            }
+            projDiv.innerHTML = projText;
+        }
+        function loadBody() {
+            //let baseDiv = document.getElementById('jssor_1');
+            let wholeDiv = document.getElementById('maxim_jssor');
+            if (!wholeDiv) {
+                setTimeout(loadBody, 1);
+                return;
+            }
+            wholeDiv.innerHTML = baseText;
+            loadJssorDisplay();
+        }
+        function loadJssorDisplay() {
+            let baseDiv = document.getElementById('jssor_1');
+            let bodyDiv = document.getElementById('bodyid');
+            if (!bodyDiv || !baseDiv) {
+                setTimeout(loadJssorDisplay, 1);
+                return;
+            }
+            // baseDiv.innerHTML = baseText;
+            baseDiv.style.cssText = baseStyle;
+            let bodytext2 = "";
+            let currProj2 = projects[currProjIndex];
+            for (let imgIndex = 0; imgIndex < currProj2.length; imgIndex++) {
+                let currImage = currProj2[imgIndex];
+                bodytext2 += '<div>'
+                if (currImage.text1 || currImage.text2 || currImage.text3) {
+                    bodytext2 += '<br>'
+                    bodytext2 += '<div style="background-color: rgba(0, 0, 0, 0.5); position: absolute;">'
+                    if (currImage.text1) {
+                        bodytext2 += '<div class="infotext">'+currImage.text1+'</div>';
+                    }
+                    if (currImage.text2) {
+                        bodytext2 += '<div class="infotext">'+currImage.text2+'</div>';
+                    }
+                    if (currImage.text3) {
+                        bodytext2 += '<div class="infotext">'+currImage.text3+'</div>';
+                    }
+                    bodytext2 += '</div>'
+                }
+
+                bodytext2 += '<img data-u="image" src="'+currImage.url+'">';
+                bodytext2 += '</img>';
+                bodytext2 += '<img data-u="thumb" src="'+currImage.url+'"/>';
+                bodytext2 += '</div>'
+            }
+
+            // Needed to prevent odd error
+            let bodyDiv2 = document.getElementById('bodyid');
+            bodyDiv2.innerHTML = bodytext2;
+            jssor_1_slider_init();
+        }
+        loadBody();
+        loadProjects();
+    </script>
+    <script type="text/javascript">
+        jssor_1_slider_init = function() {
+
+            var jssor_1_SlideshowTransitions = [
+              {$Duration:1200,$Zoom:1,$Easing:{$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad},$Opacity:2},
+              {$Duration:1000,$Zoom:11,$SlideOut:true,$Easing:{$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear},$Opacity:2},
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 0,
+              $FillMode: 1,
+              $SlideshowOptions: {
+                $Class: $JssorSlideshowRunner$,
+                $Transitions: jssor_1_SlideshowTransitions,
+                $TransitionsOrder: 1
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $ThumbnailNavigatorOptions: {
+                $Class: $JssorThumbnailNavigator$,
+                $SpacingX: 14,
+                $SpacingY: 12,
+                $Orientation: 2,
+                $Align: 450
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 1600;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+
+    <style>
+        /*jssor slider loading skin spin css*/
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider arrow skin 073 css*/
+        .jssora073 {display:block;position:absolute;cursor:pointer;}
+        .jssora073 .a {fill:#ddd;fill-opacity:.7;stroke:#000;stroke-width:160;stroke-miterlimit:10;stroke-opacity:.7;}
+        .jssora073:hover {opacity:.8;}
+        .jssora073.jssora073dn {opacity:.4;}
+        .jssora073.jssora073ds {opacity:.3;pointer-events:none;}
+
+        /*jssor slider thumbnail skin 101 css*/
+        .jssort101 .p {position: absolute;top:0;left:0;box-sizing:border-box;background:#000;cursor:pointer;}
+        .jssort101 .p .cv {position:relative;top:0;left:0;width:100%;height:100%;border:2px solid #000;box-sizing:border-box;z-index:1;}
+        .jssort101 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;visibility:hidden;}
+        .jssort101 .p:hover .cv, .jssort101 .p.pdn .cv {border:none;border-color:transparent;}
+        .jssort101 .p:hover{padding:2px;}
+        .jssort101 .p:hover .cv {background-color:rgba(0,0,0,6);opacity:.35;}
+        .jssort101 .p:hover.pdn{padding:0;}
+        .jssort101 .p:hover.pdn .cv {border:2px solid #fff;background:none;opacity:.35;}
+        .jssort101 .pav .cv {border-color:#fff;opacity:.35;}
+        .jssort101 .pav .a, .jssort101 .p:hover .a {visibility:visible;}
+        .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
+        .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
+    </style>
+
+	<script>
+        var highlightWord = undefined;
+        function highlightWordRetry(dur = 50, attempt = 0) {
+            if (attempt == 10) {
+                return;
+            }
+            setTimeout(() => {
+                if (highlightWord) {
+                    highlightWord('community')
+                } else {
+                    highlightWordRetry();
+                }
+            }, dur + 25, attempt + 1);
+        }
+        function loadHeaderFooter() {
+            $("#headerid").load("../subHeader.html");
+            $("#footerid").load("../subFooter.html");
+            highlightWordRetry();
+        }
+        setTimeout(loadHeaderFooter, 10);
+	</script>
+    <div id="headerid">
+    </div>
+    <br>
+    <div style="margin-left: 120px; margin-right: 120px; text-align: center; font-size: 40px;">
+        COMMUNITY PROJECTS
+    </div>
+    <br>
+    <div id="projectnav" class="projectnav">
+    </div>
+
+    <div id="maxim_jssor">
+        <div id="jssor_1" style="position:relative; margin:0 auto;top:0px;left:0px;width:1600px;height:1000px;overflow:hidden;visibility:hidden;background-color:#17171a;">
+            <!-- Loading Screen -->
+            <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="//jssorcdn7.azureedge.net/theme/svg/loading/static-svg/spin.svg" />
+            </div>
+            <div data-u="slides" id="bodyid" style="cursor:default;position:relative;top:0px;left:140px;width:1460px;height:1000px;overflow:hidden;">
+                <!-- Images go here -->
+
+                <!-- <div>
+                    <img data-u="image" src="//jssorcdn7.azureedge.net/demos/img/gallery/960x640/002.jpg" />
+                    <img data-u="thumb" src="/demos/img/gallery/960x640/002.jpg/=sample?120x88" />
+                </div>-->
+            </div>
+            <!-- Thumbnail Navigator -->
+            <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;top:0px;width:140px;height:1000px;background-color:#000000;" data-autocenter="2" data-scale-left="0.75">
+                <div data-u="slides">
+                    <div data-u="prototype" class="p" style="width:120px;height:88px;">
+                        <div data-u="thumbnailtemplate" class="t"></div>
+                        <svg viewbox="0 0 16000 16000" class="cv">
+                            <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+                            <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+                            <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Arrow Navigator -->
+            <div data-u="arrowleft" class="jssora073" style="width:80px;height:1000px;top:0px;left:135px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <path class="a" d="M4037.7,8357.3l5891.8,5891.8c100.6,100.6,219.7,150.9,357.3,150.9s256.7-50.3,357.3-150.9 l1318.1-1318.1c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3L7745.9,8000l4216.4-4216.4 c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3l-1318.1-1318.1c-100.6-100.6-219.7-150.9-357.3-150.9 s-256.7,50.3-357.3,150.9L4037.7,7642.7c-100.6,100.6-150.9,219.7-150.9,357.3C3886.8,8137.6,3937.1,8256.7,4037.7,8357.3 L4037.7,8357.3z"></path>
+                </svg>
+            </div>
+            <div data-u="arrowright" class="jssora073" style="width:80px;height:1000px;top:0px;right:15px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <path class="a" d="M11962.3,8357.3l-5891.8,5891.8c-100.6,100.6-219.7,150.9-357.3,150.9s-256.7-50.3-357.3-150.9 L4037.7,12931c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3L8254.1,8000L4037.7,3783.6 c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3l1318.1-1318.1c100.6-100.6,219.7-150.9,357.3-150.9 s256.7,50.3,357.3,150.9l5891.8,5891.8c100.6,100.6,150.9,219.7,150.9,357.3C12113.2,8137.6,12062.9,8256.7,11962.3,8357.3 L11962.3,8357.3z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div id="footerid">
+    </div>
+    <script>
+    </script>
+</body>
