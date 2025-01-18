@@ -4,14 +4,14 @@
 <script src="../jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../cssstyle.css">
 </head>
-<body background-color: lightblue;>
+<body style="background-color: lightblue;">
 	<script>
         function gotosite(x){
-            window.location=x;
+            window.location = x;
         }
 
         function switchimg(x, desc){
-        	$("#displayimg").attr( "src", function() {
+        	$("#displayimg").attr("src", function() {
       			return x;
     		});
         	$("#imgdesc").text(desc);
@@ -38,16 +38,14 @@
         }
         setTimeout(loadHeaderFooter, 10);
     </script>
-        <div id="headerid">
-        </div>
+        <div id="headerid"></div>
         <br>
-        <div style="margin-left: 120px; margin-right: 120px; text-align: center; font-size: 40px;">
+        <div style="text-align: center; font-size: 50px; font-weight: bold;">
             ABOUT
         </div>
-        <p style="position: relative; left:20px; width: 350px"><br>Mrs. Yuan Lin, educated both in the US and in China, has been in the architectural design and planning field for over 20 years. Her design work has been spread in both the United States and China. With great respect to her clients and the settings of the projects, she has cultivated a fresh and sharp design style using detailed and elegant language of architecture. </p>
-
-    <div id="footerid">
-    </div>
-
+        <p style="text-align: center; width: 80%; margin: 20px auto; font-size: 24px; line-height: 1.6;">
+            Mrs. Yuan Lin, educated both in the US and in China, has been in the architectural design and planning field for over 20 years. Her design work has been spread in both the United States and China. With great respect to her clients and the settings of the projects, she has cultivated a fresh and sharp design style using detailed and elegant language of architecture.
+        </p>
+    <div id="footerid"></div>
 </body>
 </html>
