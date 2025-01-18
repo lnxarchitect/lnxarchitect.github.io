@@ -186,7 +186,8 @@ body {
   position: absolute;
   top: 0px;
   right: 0%;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 6px lightblue;
   z-index: 1;
   overflow-x: hidden;
   visibility: hidden;
