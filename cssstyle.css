@@ -67,6 +67,11 @@ body {
     background-color: #FAFAFA;
 }
 
+.dropdownbtn {
+  min-height: 30px;
+  padding-top: 4px;
+}
+
 #imagediv {
   position:relative;
   float:left;
@@ -186,8 +191,7 @@ body {
   position: absolute;
   top: 0px;
   right: 0%;
-  background-color: #ffffff;
-  box-shadow: -1px 1px 10px;
+  background-color: #f1f1f1;
   z-index: 1;
   overflow-x: hidden;
   visibility: hidden;
@@ -220,6 +224,11 @@ body {
      2px 2px 0 #000;
 }
 
+.resizing {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
 .usecursor {
   cursor: pointer;
 }
@@ -227,7 +236,8 @@ body {
 .subheadernav {
   height: 32px;
   position:relative;
-  left: 10px;
+  left: 0px;
+  padding-left: 10px;
 }
 
 .projectnav{
