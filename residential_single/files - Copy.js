@@ -328,7 +328,67 @@ var projects = [
 			text1: "Santa Clara Home", 
 			text2: "Interior 5", 
 			text3: ""},
-	], [
+	],
+	[
+		{url: "fremont_home_1/1designrendering.jpg", 
+			text1: "Fremont Home", 
+			text2: "Rendered Concept", 
+			text3: ""},
+		{url: "fremont_home_1/0before.jpg", 
+			text1: "Fremont Home", 
+			text2: "Before Construction", 
+			text3: ""},
+		{url: "fremont_home_1/construction0.webp", 
+			text1: "Fremont Home", 
+			text2: "During Construction", 
+			text3: ""},
+		{url: "fremont_home_1/construction1.webp", 
+			text1: "Fremont Home", 
+			text2: "During Construction 2", 
+			text3: ""},
+		{url: "fremont_home_1/construction2.webp", 
+			text1: "Fremont Home", 
+			text2: "During Construction 3", 
+			text3: ""},
+		{url: "fremont_home_1/ext1.webp", 
+			text1: "Fremont Home", 
+			text2: "Construction Finished", 
+			text3: ""},
+		{url: "fremont_home_1/ext3.webp", 
+			text1: "Fremont Home", 
+			text2: "Construction Finished - Front View", 
+			text3: ""},
+		{url: "fremont_home_1/ext2.webp", 
+			text1: "Fremont Home", 
+			text2: "Construction Finished - Back View", 
+			text3: ""},
+		{url: "fremont_home_1/int1.webp", 
+			text1: "Fremont Home", 
+			text2: "Interior - Main Hall", 
+			text3: ""},
+		{url: "fremont_home_1/int2.webp", 
+			text1: "Fremont Home", 
+			text2: "Interior - Stairway", 
+			text3: ""},
+		{url: "fremont_home_1/int3.webp", 
+			text1: "Fremont Home", 
+			text2: "Interior - Stairway 2", 
+			text3: ""},
+		{url: "fremont_home_1/int4.webp", 
+			text1: "Fremont Home", 
+			text2: "Interior - Kitchen", 
+			text3: ""},
+		{url: "fremont_home_1/int5.webp", 
+			text1: "Fremont Home", 
+			text2: "Interior", 
+			text3: ""},
+		{url: "fremont_home_1/int6.webp", 
+			text1: "Fremont Home", 
+			text2: "Interior - Bathroom", 
+			text3: ""},
+
+	],
+	[
 		{url: "walnut_creek/AFTER1.jpg", 
 			text1: "Walnut Creek House", 
 			text2: "Addition Rendered Concept", 
@@ -597,25 +657,63 @@ var projects = [
 			text1: "Pleasanton Home Extension", 	
 			text2: "Bathroom", 	
 			text3: ""}
+	], [
+		{url: "menlo_park_poolside_adu/EXT-1.jpg", 	
+			text1: "Menlo Park - Poolside ADU", 	
+			text2: "Backyard ADU Pool View", 	
+			text3: ""},
+		{url: "menlo_park_poolside_adu/EXT-2.webp", 	
+			text1: "Menlo Park - Poolside ADU", 	
+			text2: "ADU Side View", 	
+			text3: ""},
+		{url: "menlo_park_poolside_adu/INT-1.webp", 	
+			text1: "Menlo Park - Poolside ADU", 	
+			text2: "Interior View", 	
+			text3: ""},
+		{url: "menlo_park_poolside_adu/INT-2.webp", 	
+			text1: "Menlo Park - Poolside ADU", 	
+			text2: "Bathroom View", 	
+			text3: ""},
+		{url: "menlo_park_poolside_adu/INT-3.webp", 	
+			text1: "Menlo Park - Poolside ADU", 	
+			text2: "Folding Door View", 	
+			text3: ""},
+		{url: "menlo_park_poolside_adu/INT-4.webp", 	
+			text1: "Menlo Park - Poolside ADU", 	
+			text2: "Door Open", 	
+			text3: ""},
 	]
 ]
 
-projects[0].title="The Wang Residence";
-projects[1].title="Saratoga Home";
-projects[2].title="Saratoga Home 2";
-projects[3].title="Berkeley Home Project";
-projects[4].title="Emeryville Home Remodel";
-projects[5].title="Santa Clara Home 1-The Guballa Residence";
-projects[6].title="Santa Clara Home 2";
-projects[7].title="Santa Clara Home 3";
-projects[8].title="Santa Clara Home 4";
-projects[9].title="Walnut Creek House Addition";
-projects[10].title="Belmont Homes, California";
-projects[11].title="Cupertino Home Expansion";
-projects[12].title="Cupertino Home 2";
-projects[13].title="San Jose Home";
-projects[14].title="San Ramon Home";
-projects[14].shownImage=1;
-projects[15].title="Santa Clara County Home 1 Project";
-projects[16].title="El Cerrito Garage Project";
-projects[17].title="Pleasanton Home";
+let titleArray = [
+	"The Wang Residence",
+	"Saratoga Home",
+	"Saratoga Home 2",
+	"Berkeley Home Project",
+	"Emeryville Home Remodel",
+	"Santa Clara Home 1-The Guballa Residence",
+	"Santa Clara Home 2",
+	"Santa Clara Home 3",
+	"Santa Clara Home 4",
+	"Fremont Home",
+
+	"Walnut Creek House Addition",
+	"Belmont Homes, California",
+	"Cupertino Home Expansion",
+	"Cupertino Home 2",
+	"San Jose Home",
+	"San Ramon Home",
+	"Santa Clara County Home 1 Project",
+	"El Cerrito Garage Project",
+	"Pleasanton Home",
+	"Menlo Park Poolside ADU",
+]
+
+for (let i = 0; i < titleArray.length; i++) {
+	projects[i].title = titleArray[i];
+}
+
+projects[15].shownImage=1;
+
+
+
