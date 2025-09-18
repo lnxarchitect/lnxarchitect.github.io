@@ -1,13 +1,9 @@
 var projects = [
 	[
-		{url: "inner_mongolia/09.jpg", 
+		{url: "inner_mongolia/01.jpg", 
 			text1: "Inner-Mongolia Tourist's Building-Hotel/Shopping/Museum/Office Complex", 
 			text2: "Site Area: 15,521 SQ Meters. Building Area: 31,000 SQ Meters", 
 			text3: "Positioning Company: Beijing Qing Gu Yin Xiang Environmental Planning and Design"},
-		{url: "inner_mongolia/01.jpg", 
-			text1: "Inner-Mongolia Tourist's Building", 
-			text2: "Render Overview", 
-			text3: ""},
 		{url: "inner_mongolia/02.jpg", 
 			text1: "Inner-Mongolia Tourist's Building", 
 			text2: "Render Night View", 
